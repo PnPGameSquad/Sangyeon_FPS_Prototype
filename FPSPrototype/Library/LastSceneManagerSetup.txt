@@ -1,0 +1,5 @@
+sceneSetups:
+- path: "Assets/FPS9\uC7A5\uAE4C\uC9C0.unity"
+  isLoaded: 1
+  isActive: 1
+  isSubScene: 0
