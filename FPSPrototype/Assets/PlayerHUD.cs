@@ -8,35 +8,35 @@ public class PlayerHUD : MonoBehaviour
 {
     [Header("Components")]
     [SerializeField]
-    private WeaponAssaultRifle weapon; // ÇöÀç Á¤º¸°¡ Ãâ·ÂµÇ´Â ¹«±â
+    private WeaponAssaultRifle weapon; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ÂµÇ´ï¿½ ï¿½ï¿½ï¿½ï¿½
     [SerializeField]
-    private Status status; // ÇÃ·¹ÀÌ¾îÀÇ »óÅÂ (ÀÌµ¿¼Óµµ, Ã¼·Â)
+    private Status status; // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½Ìµï¿½ï¿½Óµï¿½, Ã¼ï¿½ï¿½)
 
     [Header("Weapon Base")]
     [SerializeField]
-    private TextMeshProUGUI textWeaponName; // ¹«±â ÀÌ¸§
+    private TextMeshProUGUI textWeaponName; // ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½
     [SerializeField]
-    private Image imageWeaponIcon; // ¹«±â ¾ÆÀÌÄÜ
+    private Image imageWeaponIcon; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     [SerializeField]
-    private Sprite[] spriteWeaponIcons; // ¹«±â ¾ÆÀÌÄÜ¿¡ »ç¿ëµÇ´Â sprite ¹è¿­
+    private Sprite[] spriteWeaponIcons; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ü¿ï¿½ ï¿½ï¿½ï¿½Ç´ï¿½ sprite ï¿½è¿­
 
     [Header("Ammo")]
     [SerializeField]
-    private TextMeshProUGUI textAmmo; // ÇöÀç/ÃÖ´ë Åº ¼ö Ãâ·Â Text
+    private TextMeshProUGUI textAmmo; // ï¿½ï¿½ï¿½ï¿½/ï¿½Ö´ï¿½ Åº ï¿½ï¿½ ï¿½ï¿½ï¿½ Text
 
     [Header("Magazine")]
     [SerializeField]
-    private GameObject magazineUIPrefab; // ÅºÃ¢ UI ÇÁ¸®ÆÕ
+    private GameObject magazineUIPrefab; // ÅºÃ¢ UI ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     [SerializeField]
-    private Transform magazineParent; // ÅºÃ¢ UI°¡ ¹èÄ¡µÇ´Â Panel
+    private Transform magazineParent; // ÅºÃ¢ UIï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½Ç´ï¿½ Panel
 
-    private List<GameObject> magazineList; // ÅºÃ¢ UI ¸®½ºÆ®
+    private List<GameObject> magazineList; // ÅºÃ¢ UI ï¿½ï¿½ï¿½ï¿½Æ®
 
     [Header("HP & BloodScreen UI")]
     [SerializeField]
-    private TextMeshProUGUI textHP; // ÇÃ·¹ÀÌ¾îÀÇ Ã¼·ÂÀ» Ãâ·ÂÇÏ´Â Text
+    private TextMeshProUGUI textHP; // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ Ã¼ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ Text
     [SerializeField]
-    private Image imageBloodScreen; // ÇÃ·¹ÀÌ¾î°¡ °ø°Ý¹Þ¾ÒÀ» ¶§ È­¸é¿¡ Ç¥½ÃµÇ´Â Image
+    private Image imageBloodScreen; // ï¿½Ã·ï¿½ï¿½Ì¾î°¡ ï¿½ï¿½ï¿½Ý¹Þ¾ï¿½ï¿½ï¿½ ï¿½ï¿½ È­ï¿½é¿¡ Ç¥ï¿½ÃµÇ´ï¿½ Image
     [SerializeField]
     private AnimationCurve curveBloodScreen;
 
@@ -46,8 +46,8 @@ public class PlayerHUD : MonoBehaviour
         SetupWeapon();
         SetupMagazine();
 
-        // ¸Þ¼Òµå°¡ µî·ÏµÇ¾î ÀÖ´Â ÀÌº¥Æ® Å¬·¡½º(weapon.xx)ÀÇ
-        // Invoke() ¸Þ¼Òµå°¡ È£ÃâµÉ ¶§ µî·ÏµÈ ¸Þ¼Òµå(¸Å°³º¯¼ö)°¡ ½ÇÇàµÈ´Ù
+        // ï¿½Þ¼Òµå°¡ ï¿½ï¿½ÏµÇ¾ï¿½ ï¿½Ö´ï¿½ ï¿½Ìºï¿½Æ® Å¬ï¿½ï¿½ï¿½ï¿½(weapon.xx)ï¿½ï¿½
+        // Invoke() ï¿½Þ¼Òµå°¡ È£ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ïµï¿½ ï¿½Þ¼Òµï¿½(ï¿½Å°ï¿½ï¿½ï¿½ï¿½ï¿½)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½È´ï¿½
         weapon.onAmmoEvent.AddListener(UpdateAmmoHUD);
         weapon.onMagazineEvent.AddListener(UpdateMagazineHUD);
         status.onHPEvent.AddListener(UpdateHPHUD);
@@ -61,13 +61,13 @@ public class PlayerHUD : MonoBehaviour
 
     private void UpdateAmmoHUD(int currentAmmo, int maxAmmo)
     {
-        textAmmo.text = $"<size=40>{currentAmmo}</size>{maxAmmo}";
+        textAmmo.text = $"<size=40>{currentAmmo}/</size>{maxAmmo}";
     }
 
     private void SetupMagazine()
     {
-        // weapon¿¡ µî·ÏµÇ¾î ÀÖ´Â ÃÖ´ë ÅºÃ¢ °³¼ö¸¸Å­ Image IconÀ» »ý¼º
-        // magazineParent ¿ÀºêÁ§Æ®ÀÇ ÀÚ½ÄÀ¸·Î µî·Ï ÈÄ ¸ðµÎ ºñÈ°¼ºÈ­ / ¸®½ºÆ®¿¡ ÀúÀå
+        // weaponï¿½ï¿½ ï¿½ï¿½ÏµÇ¾ï¿½ ï¿½Ö´ï¿½ ï¿½Ö´ï¿½ ÅºÃ¢ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å­ Image Iconï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        // magazineParent ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ú½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­ / ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         magazineList = new List<GameObject>();
         for (int i=0; i< weapon.MaxMagazine; ++i)
         {
@@ -78,7 +78,7 @@ public class PlayerHUD : MonoBehaviour
             magazineList.Add(clone);
         }
 
-        // weapon¿¡ µî·ÏµÇ¾î ÀÖ´Â ÇöÀç ÅºÃ¢ °³¼ö¸¸Å­ ¿ÀºêÁ§Æ® È°¼ºÈ­
+        // weaponï¿½ï¿½ ï¿½ï¿½ÏµÇ¾ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ ÅºÃ¢ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å­ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® È°ï¿½ï¿½È­
         for (int i=0; i< weapon.CurrentMagazine; ++i)
         {
             magazineList[i].SetActive(true);
@@ -87,7 +87,7 @@ public class PlayerHUD : MonoBehaviour
 
     private void UpdateMagazineHUD(int currentMagazine)
     {
-        // ÀüºÎ ºñÈ°¼ºÈ­ÇÏ°í, currentMagazine °³¼ö¸¸Å­ È°¼ºÈ­
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­ï¿½Ï°ï¿½, currentMagazine ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å­ È°ï¿½ï¿½È­
         for (int i=0; i< magazineList.Count; ++i)
         {
             magazineList[i].SetActive(false);
